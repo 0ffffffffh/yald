@@ -11,7 +11,6 @@ namespace yald
         private GenericArrayList<FilteredLogSlot> Slots;
         private EntryList GeneralEntries;
         private TabContent GeneralTabUi;
-        private string AdbExecutable;
         ProcessObject LogcatProcess;
 
         public LogcatManager()
@@ -19,7 +18,8 @@ namespace yald
             Slots = new GenericArrayList<FilteredLogSlot>(10);
             GeneralEntries = new EntryList();
 
-            LogcatProcess = new ProcessObject(@"C:\Users\Oguz Kartal\Desktop\android-sdk-windows\tools\adb.exe", "logcat");
+            LogcatProcess = new ProcessObject("logcat");
+
             LogcatProcess.OnLineOutputReceive += new ProcessObject.ConsoleLineOutputHandler(LogcatProcess_OnLineOutputReceive);
         }
 
@@ -84,6 +84,9 @@ namespace yald
 
         public bool Start()
         {
+            if (string.IsNullOrEmpty(LogcatProcess.ExecutableFile))
+                throw new Exception("adb executable is not set!");
+
             LogcatProcess.Start();
 
             return LogcatProcess.IsRunning;
@@ -103,8 +106,8 @@ namespace yald
 
         public string Adb
         {
-            get { return AdbExecutable; }
-            set { AdbExecutable = value; }
+            get { return LogcatProcess.ExecutableFile; }
+            set { LogcatProcess.ExecutableFile = value; }
         }
 
         public event DeviceConnectedEventHandler OnDeviceConnected;

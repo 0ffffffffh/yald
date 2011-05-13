@@ -60,6 +60,9 @@ namespace yald
 
         private void SaveAdbLocation(string loc)
         {
+            if (string.IsNullOrEmpty(loc))
+                return;
+
             try
             {
                 StreamWriter AdbLocation = new StreamWriter("adbsetting.stg");
@@ -174,9 +177,18 @@ namespace yald
                 return;
             }
 
-            if (!logcat.Start())
+            try
             {
-                lblStatus.Text = "adb could not start";
+
+                if (!logcat.Start())
+                {
+                    lblStatus.Text = "adb could not start";
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return;
             }
 

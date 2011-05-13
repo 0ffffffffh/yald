@@ -19,6 +19,16 @@ namespace yald
 
         private bool Consume = true;
 
+
+        public ProcessObject() : this(null,null)
+        {
+        }
+
+        public ProcessObject(string cmdline) : this(null,cmdline)
+        {
+
+        }
+
         public ProcessObject(string process, string cmdline)
         {
             WorkerBlock = new ManualResetEvent(false);
@@ -110,6 +120,18 @@ namespace yald
         public bool IsRunning
         {
             get { return Running; }
+        }
+
+        public string ExecutableFile
+        {
+            get
+            {
+                return Psi.FileName;
+            }
+            set
+            {
+                Psi.FileName = value;
+            }
         }
 
         public event ConsoleLineOutputHandler OnLineOutputReceive;
