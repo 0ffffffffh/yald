@@ -17,8 +17,6 @@ namespace yald
         private ManualResetEvent WorkerBlock, StartWait;
         private bool Running = false;
 
-        private StringBuilder ConsoleBuffer = new StringBuilder();
-
         private bool Consume = true;
 
         public ProcessObject(string process, string cmdline)
@@ -34,7 +32,6 @@ namespace yald
             Psi.Arguments = cmdline;
             Psi.WindowStyle = ProcessWindowStyle.Hidden;
             Psi.CreateNoWindow = true;
-            ConsoleBuffer = new StringBuilder();
         }
 
         private void WorkerFunc()
