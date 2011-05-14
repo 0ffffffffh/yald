@@ -12,7 +12,7 @@ namespace yald
     {
         private FilterList Filters;
         private string FilterName;
-
+        private bool LinkWithAndState;
 
         public static bool SaveFilters(List<UserFilterObject> Filters, string Filename)
         {
@@ -55,10 +55,12 @@ namespace yald
         {
         }
 
-        public UserFilterObject(FilterList List, string Name)
+        public UserFilterObject(FilterList List, string Name, bool LinkWithAnd)
         {
             Filters = List;
             FilterName = Name;
+            LinkWithAndState = LinkWithAnd;
+            Filters.LinkWithAnd = LinkWithAnd;
         }
 
         public FilterList FilterObject
@@ -72,5 +74,7 @@ namespace yald
             get { return FilterName; }
             set { FilterName = value; }
         }
+
+        
     }
 }

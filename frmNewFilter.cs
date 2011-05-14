@@ -95,6 +95,11 @@ namespace yald
             return FilterName;
         }
 
+        public bool GetLinkState()
+        {
+            return chkLinkRulesAnd.Checked;
+        }
+
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             FilterName = txtFilterName.Text;

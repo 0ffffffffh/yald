@@ -43,6 +43,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lstFilterPool = new System.Windows.Forms.ListBox();
+            this.chkLinkRulesAnd = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,7 +157,7 @@
             // 
             // btnAddToList
             // 
-            this.btnAddToList.Location = new System.Drawing.Point(164, 153);
+            this.btnAddToList.Location = new System.Drawing.Point(164, 175);
             this.btnAddToList.Name = "btnAddToList";
             this.btnAddToList.Size = new System.Drawing.Size(97, 28);
             this.btnAddToList.TabIndex = 10;
@@ -210,11 +211,22 @@
             this.lstFilterPool.Size = new System.Drawing.Size(362, 251);
             this.lstFilterPool.TabIndex = 14;
             // 
+            // chkLinkRulesAnd
+            // 
+            this.chkLinkRulesAnd.AutoSize = true;
+            this.chkLinkRulesAnd.Location = new System.Drawing.Point(326, 270);
+            this.chkLinkRulesAnd.Name = "chkLinkRulesAnd";
+            this.chkLinkRulesAnd.Size = new System.Drawing.Size(129, 17);
+            this.chkLinkRulesAnd.TabIndex = 11;
+            this.chkLinkRulesAnd.Text = "Link rules with \"AND\"";
+            this.chkLinkRulesAnd.UseVisualStyleBackColor = true;
+            // 
             // frmNewFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 323);
+            this.Controls.Add(this.chkLinkRulesAnd);
             this.Controls.Add(this.lstFilterPool);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.groupBox1);
@@ -248,5 +260,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListBox lstFilterPool;
+        private System.Windows.Forms.CheckBox chkLinkRulesAnd;
     }
 }

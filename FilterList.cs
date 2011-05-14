@@ -22,11 +22,19 @@ namespace yald
         public bool Match(LogEntry log)
         {
             bool stat = false;
+            int MatchCount = 0;
+
 
             Filters.Iterate(delegate(LogFilter filter) 
             {
                 if (filter.Match(log))
                 {
+                    if (LinkWithAnd)
+                    {
+                        MatchCount++;
+                        return false;
+                    }
+
                     stat = true;
                     return true;
                 }
@@ -34,12 +42,22 @@ namespace yald
                 return false;
             });
 
+
+            if (LinkWithAnd && Filters.Count == MatchCount)
+                stat = true;
+
             return stat;
         }
 
         public int Count
         {
             get { return Filters.Count; }
+        }
+
+        public bool LinkWithAnd
+        {
+            get;
+            set;
         }
     }
 }

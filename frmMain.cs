@@ -140,29 +140,31 @@ namespace yald
 
         private void addNewFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserFilterObject UserFilter;
+            string Name;
+            FilterList List;
+            bool LinkState;
 
-            FilterList list;
-            string name;
+            UserFilterObject UserFilter;
 
             frmNewFilter filter = new frmNewFilter();
             filter.ShowDialog();
 
-            list = filter.GetFilterList();
-            name = filter.GetFilterName();
-
-            if (list == null)
+            if (filter.GetFilterList() == null)
                 return;
 
-            UserFilter = new UserFilterObject(list, name);
+            Name = filter.GetFilterName();
+            List = filter.GetFilterList();
+            LinkState = filter.GetLinkState();
+
+            UserFilter = new UserFilterObject(List, Name, LinkState);
 
             UserFilters.Add(UserFilter);
             UserFilterObject.SaveFilters(UserFilters, "filter.flt");
 
 
-            AddNewTab(name, true);
+            AddNewTab(Name, true);
 
-            logcat.AddSlot(name, list).LinkUi(TabContents[TabContents.Count - 1]);
+            logcat.AddSlot(Name, List).LinkUi(TabContents[TabContents.Count - 1]);
 
             
 
