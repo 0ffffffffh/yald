@@ -24,6 +24,15 @@ namespace yald
             Filters = filters;
         }
 
+        public void Clear()
+        {
+            if (Filters != null)
+                Filters.Clear();
+
+            if (Entires != null)
+                Entires.Clear();
+        }
+
         public int Count
         {
             get { return Entires.Count; }

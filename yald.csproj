@@ -14,6 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
+    <ApplicationIcon>Resources\oo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,9 +52,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EntryList.cs" />
-    <Compile Include="FilterContainer.cs" />
+    <Compile Include="UserFilterObject.cs" />
     <Compile Include="FilteredLogSlot.cs" />
     <Compile Include="FilterList.cs" />
+    <Compile Include="frmFilters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFilters.Designer.cs">
+      <DependentUpon>frmFilters.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,14 +78,26 @@
     <Compile Include="LogcatManager.cs" />
     <Compile Include="LogFilter.cs" />
     <Compile Include="LogEntry.cs" />
+    <Compile Include="MainRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="ProcessObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmFilters.resx">
+      <DependentUpon>frmFilters.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewFilter.resx">
       <DependentUpon>frmNewFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,6 +127,9 @@
     <Compile Include="TabContent.Designer.cs">
       <DependentUpon>TabContent.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

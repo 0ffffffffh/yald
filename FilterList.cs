@@ -19,6 +19,12 @@ namespace yald
             Filters.Add(filter);
         }
 
+        public void Clear()
+        {
+            if (Filters != null)
+                Filters.Clear();
+        }
+
         public bool Match(LogEntry log)
         {
             bool stat = false;

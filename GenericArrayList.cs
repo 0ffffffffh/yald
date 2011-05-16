@@ -6,7 +6,7 @@ using System.Collections;
 namespace yald
 {
     [Serializable]
-    class GenericArrayList<T>
+    public class GenericArrayList<T>
     {
         public delegate bool Iterator(T item);
 
@@ -66,5 +66,16 @@ namespace yald
                     break;
             }
         }
+
+        public IEnumerator GetEnumerator(int index, int count)
+        {
+            return ArrList.GetEnumerator();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return ArrList.GetEnumerator();
+        }
+        
     }
 }

@@ -77,6 +77,26 @@ namespace yald
             return Slot;
         }
 
+        public void RemoveSlot(string Name)
+        {
+            FilteredLogSlot ToRemoveSlot = null;
+
+            foreach (FilteredLogSlot slot in Slots)
+            {
+                if (slot.Name == Name)
+                {
+                    ToRemoveSlot = slot;
+                    break;
+                }
+            }
+
+            if (ToRemoveSlot != null)
+            {
+                ToRemoveSlot.Dispose();
+                Slots.Remove(ToRemoveSlot);
+            }
+        }
+
         public void Stop()
         {
             LogcatProcess.Kill();

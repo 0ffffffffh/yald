@@ -12,7 +12,6 @@ namespace yald
     public partial class frmMain : Form
     {
         LogcatManager logcat = new LogcatManager();
-        GenericArrayList<TabContent> TabContents = new GenericArrayList<TabContent>();
         List<UserFilterObject> UserFilters;
 
         public frmMain()
@@ -20,7 +19,7 @@ namespace yald
             InitializeComponent();
         }
 
-        private void AddTabContentToPage(TabPage Page, string Name, bool SelectTab)
+        private TabContent AddTabContentToPage(TabPage Page, string Name, bool SelectTab)
         {
             TabContent ContentObj = new TabContent();
             Page.Name = Name;
@@ -31,22 +30,22 @@ namespace yald
             if (tbFilterContainer.TabPages.IndexOf(Page) == -1)
                 tbFilterContainer.TabPages.Add(Page);
 
-            TabContents.Add(ContentObj);
-
             if (SelectTab)
                 tbFilterContainer.SelectedTab = Page;
+
+            return ContentObj;
         }
 
-        private void AddNewTab(string name, bool select)
+        private TabContent AddNewTab(string name, bool select)
         {
             TabPage NewPage = new TabPage();
 
-            AddTabContentToPage(NewPage, name, true);
+            return AddTabContentToPage(NewPage, name, true);
         }
 
-        private void InitGeneralTab()
+        private TabContent InitGeneralTab()
         {
-            AddTabContentToPage(tbGeneralTab, "All Logs", false);
+            return AddTabContentToPage(tbGeneralTab, "All Logs", false);
         }
 
         private void LocateTabs()
@@ -103,10 +102,12 @@ namespace yald
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            TabContent TabContentObj;
+
             UserFilters = UserFilterObject.LoadFilters("filter.flt");
 
-            InitGeneralTab();
-            logcat.GeneralTabContent = TabContents[0];
+            TabContentObj = InitGeneralTab();
+            logcat.GeneralTabContent = TabContentObj;
             logcat.OnDeviceConnected += new LogcatManager.DeviceConnectedEventHandler(logcat_OnDeviceConnected);
             logcat.Adb = LoadAdbLocation();
 
@@ -116,8 +117,8 @@ namespace yald
             {
                 foreach (UserFilterObject filter in UserFilters)
                 {
-                    AddNewTab(filter.Name, false);
-                    logcat.AddSlot(filter.Name, filter.FilterObject).LinkUi(TabContents[TabContents.Count - 1]);
+                    TabContentObj = AddNewTab(filter.Name, false);
+                    logcat.AddSlot(filter.Name, filter.FilterObject).LinkUi(TabContentObj);
                 }
             }
 
@@ -140,6 +141,7 @@ namespace yald
 
         private void addNewFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TabContent NewTabContentObj;
             string Name;
             FilterList List;
             bool LinkState;
@@ -162,11 +164,9 @@ namespace yald
             UserFilterObject.SaveFilters(UserFilters, "filter.flt");
 
 
-            AddNewTab(Name, true);
+            NewTabContentObj = AddNewTab(Name, true);
 
-            logcat.AddSlot(Name, List).LinkUi(TabContents[TabContents.Count - 1]);
-
-            
+            logcat.AddSlot(Name, List).LinkUi(NewTabContentObj);
 
         }
 
@@ -209,6 +209,42 @@ namespace yald
 
             SaveAdbLocation(AdbFile.FileName);
 
+        }
+
+        private void filtersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GenericArrayList<UserFilterObject> RemovedObjects;
+            TabPage CurrTab;
+
+            frmFilters FiltersDlg = new frmFilters(UserFilters);
+            FiltersDlg.ShowDialog();
+
+            RemovedObjects = FiltersDlg.GetRemovedObjects();
+
+            if (RemovedObjects.Count > 0)
+            {
+                //perform real deleting operation
+
+                foreach (UserFilterObject filter in RemovedObjects)
+                {
+                    logcat.RemoveSlot(filter.Name);
+
+                    for (int i = 0; i < tbFilterContainer.TabPages.Count; i++)
+                    {
+                        CurrTab = tbFilterContainer.TabPages[i];
+
+                        if (CurrTab.Text == filter.Name)
+                        {
+                            tbFilterContainer.TabPages.Remove(CurrTab);
+                            CurrTab.Dispose();
+                        }
+                    }
+                }
+
+                RemovedObjects.Clear();
+
+                UserFilterObject.SaveFilters(UserFilters, "filter.flt");
+            }
         }
     }
 }

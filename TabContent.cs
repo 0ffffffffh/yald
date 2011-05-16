@@ -26,6 +26,12 @@ namespace yald
             return lstLogs;
         }
 
+        public void ClearTab()
+        {
+            lstLogs.Items.Clear();
+            lstLogs.Dispose();
+        }
+
         public void WriteLog(LogEntry log)
         {
             Color color = Color.Teal;

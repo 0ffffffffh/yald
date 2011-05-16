@@ -4,12 +4,12 @@ using System.Text;
 
 namespace yald
 {
-    class FilteredLogSlot
+    class FilteredLogSlot : IDisposable
     {
         private EntryList FilteredList;
         private FilterList SlotFilters;
         private TabContent Ui;
-
+        private bool Disposed = false;
         private string SlotName;
 
         public FilteredLogSlot(string Slotname, FilterList Filters)
@@ -17,6 +17,12 @@ namespace yald
             FilteredList = new EntryList();
             SlotFilters = Filters;
             SlotName = Slotname;
+        }
+
+        private void CheckDisposed()
+        {
+            if (Disposed)
+                throw new Exception("Object disposed!");
         }
 
         public string Name
@@ -28,17 +34,22 @@ namespace yald
         {
             get
             {
+                CheckDisposed();
                 return SlotFilters.Count;
             }
         }
 
         public void LinkUi(TabContent content)
         {
+            CheckDisposed();
+
             Ui = content;
         }
 
         public bool TryAdd(LogEntry entry)
         {
+            CheckDisposed();
+
             if (SlotFilters.Match(entry))
             {
                 if (Ui.InvokeRequired)
@@ -54,6 +65,21 @@ namespace yald
             }
 
             return false;
+        }
+
+
+        public void Dispose()
+        {
+            CheckDisposed();
+
+            FilteredList.Clear();
+            FilteredList = null;
+            SlotFilters.Clear();
+            SlotFilters = null;
+            Ui.ClearTab();
+            Ui.Dispose();
+            Ui = null;
+            Disposed = true;
         }
     }
 }

@@ -8,7 +8,7 @@ using System.IO;
 namespace yald
 {
     [Serializable]
-    class UserFilterObject
+    public class UserFilterObject
     {
         private FilterList Filters;
         private string FilterName;
@@ -75,6 +75,10 @@ namespace yald
             set { FilterName = value; }
         }
 
+        public override string ToString()
+        {
+            return FilterName;
+        }
         
     }
 }
