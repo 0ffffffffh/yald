@@ -82,8 +82,11 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnRemSelected);
             this.Controls.Add(this.lstFilters);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmFilters";
-            this.Text = "frmFilters";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Filters";
             this.Load += new System.EventHandler(this.frmFilters_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

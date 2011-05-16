@@ -233,7 +233,10 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtFilterName);
             this.Controls.Add(this.label4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmNewFilter";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add a New Filter";
             this.Load += new System.EventHandler(this.frmNewFilter_Load);
             this.groupBox1.ResumeLayout(false);

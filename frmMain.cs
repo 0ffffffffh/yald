@@ -246,5 +246,11 @@ namespace yald
                 UserFilterObject.SaveFilters(UserFilters, "filter.flt");
             }
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAbout AboutDlg = new frmAbout();
+            AboutDlg.ShowDialog();
+        }
     }
 }

@@ -34,13 +34,14 @@
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setADBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.prgStatusProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbFilterContainer.SuspendLayout();
             this.mnMain.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -69,7 +70,8 @@
             // 
             this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
-            this.sToolStripMenuItem});
+            this.sToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.mnMain.Location = new System.Drawing.Point(0, 0);
             this.mnMain.Name = "mnMain";
             this.mnMain.Size = new System.Drawing.Size(565, 24);
@@ -92,6 +94,13 @@
             this.addNewFilterToolStripMenuItem.Text = "Add New Filter";
             this.addNewFilterToolStripMenuItem.Click += new System.EventHandler(this.addNewFilterToolStripMenuItem_Click);
             // 
+            // filtersToolStripMenuItem
+            // 
+            this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
+            this.filtersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filtersToolStripMenuItem.Text = "Filters";
+            this.filtersToolStripMenuItem.Click += new System.EventHandler(this.filtersToolStripMenuItem_Click);
+            // 
             // sToolStripMenuItem
             // 
             this.sToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -104,14 +113,14 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // setADBToolStripMenuItem
             // 
             this.setADBToolStripMenuItem.Name = "setADBToolStripMenuItem";
-            this.setADBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setADBToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.setADBToolStripMenuItem.Text = "Set ADB";
             this.setADBToolStripMenuItem.Click += new System.EventHandler(this.setADBToolStripMenuItem_Click);
             // 
@@ -139,12 +148,12 @@
             this.prgStatusProgress.Name = "prgStatusProgress";
             this.prgStatusProgress.Size = new System.Drawing.Size(100, 16);
             // 
-            // filtersToolStripMenuItem
+            // aboutToolStripMenuItem
             // 
-            this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
-            this.filtersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.filtersToolStripMenuItem.Text = "Filters";
-            this.filtersToolStripMenuItem.Click += new System.EventHandler(this.filtersToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -156,6 +165,7 @@
             this.Controls.Add(this.mnMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yet Another Logcat Dumper";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
@@ -183,6 +193,7 @@
         private System.Windows.Forms.ToolStripProgressBar prgStatusProgress;
         private System.Windows.Forms.ToolStripMenuItem setADBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filtersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

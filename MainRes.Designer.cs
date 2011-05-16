@@ -60,10 +60,10 @@ namespace yald {
             }
         }
         
-        internal static System.Drawing.Icon oo {
+        internal static System.Drawing.Bitmap oo {
             get {
                 object obj = ResourceManager.GetObject("oo", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

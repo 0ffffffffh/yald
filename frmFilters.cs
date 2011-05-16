@@ -36,7 +36,7 @@ namespace yald
 
             if (selcount < 1)
             {
-                MessageBox.Show("Please select to remove items");
+                MessageBox.Show("You must select an item first.");
                 return;
             }
 

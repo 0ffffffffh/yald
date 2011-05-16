@@ -52,6 +52,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EntryList.cs" />
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserFilterObject.cs" />
     <Compile Include="FilteredLogSlot.cs" />
     <Compile Include="FilterList.cs" />
@@ -86,6 +92,9 @@
     <Compile Include="ProcessObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFilters.resx">
       <DependentUpon>frmFilters.cs</DependentUpon>
     </EmbeddedResource>
