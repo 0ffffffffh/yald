@@ -55,7 +55,13 @@ namespace yald
         private bool DoMatchForString(string Str)
         {
             if (UseRegexp)
-                return Regex.IsMatch(Str,(string)Value);
+            {
+                try
+                {
+                    return Regex.IsMatch(Str, (string)Value);
+                }
+                catch { }
+            }
 
             switch (Oper)
             {

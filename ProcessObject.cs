@@ -114,7 +114,11 @@ namespace yald
                 catch { }
             }
 
-            WorkingProcess.Kill();
+            try
+            {
+                WorkingProcess.Kill();
+            }
+            catch { }
         }
 
         public bool IsRunning
